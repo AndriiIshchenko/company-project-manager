@@ -1,2 +1,2 @@
 # company-project-manager
-Project for managing employers an tasks inside company
+Project to manage the company’s employees and tasks
