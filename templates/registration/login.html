@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>
+        Django Gradient Able -  Login  | AppSeed
+    </title>     
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-gradientable">
+	
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Codedthemes" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="https://appsrv1-147a1.kxcdn.com/gradient/images/favicon.ico" type="image/x-icon">
+
+	<!-- vendor css -->
+	<link rel="stylesheet" href="https://appsrv1-147a1.kxcdn.com/gradient/css/style.min.css">
+
+    <!-- Specific CSS goes HERE -->
+    
+
+</head>
+<body>
+
+    <!-- [ auth-signin ] start -->
+    <div class="auth-wrapper">
+         
+
+	<!-- [ auth-signin ] start -->
+	<div class="auth-wrapper">
+		<div class="auth-content">
+			<div class="card">
+				<div class="row align-items-center text-center">
+					<div class="col-md-12">
+						<div class="card-body">
+
+							{% comment %} <img src="https://appsrv1-147a1.kxcdn.com/gradient/images/logo-dark.png" alt="" class="img-fluid mb-4"> {% endcomment %}
+							<h4 class="mb-3 f-w-400">
+								Sign IN
+							</h4>
+							<span class="mb-0 text-muted">
+								
+									Use default credentials: test / ApS12_ZZs8 
+								 
+							</span>
+							<!-- dummy spacer -->
+							<p> <br /> </p>						
+							{% if form.errors %}
+  							<p>Your username and password didn't match. Please try again.</p>
+							{% endif %}
+							<form role="form" method="post" action="">
+                				{% csrf_token %}
+                
+                
+							
+								
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="feather icon-user"></i></span>
+									</div>
+									<input type="text" name="username" placeholder="Username" class="form-control" value="test" required id="id_username">
+								</div>
+								<div class="input-group mb-4">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="feather icon-lock"></i></span>
+									</div>
+									<input type="password" name="password" placeholder="Password" class="form-control" value="ApS12_ZZs8" required id="id_password">
+								</div>
+								<div class="form-group text-left mt-2">
+									<div class="checkbox checkbox-primary d-inline">
+										<input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
+										<label for="checkbox-fill-a1" class="cr"> Save credentials</label>
+									</div>
+								</div>
+								<button type="submit" name="login" class="btn btn-block btn-primary mb-4">Signin</button>
+								<input type="hidden" name="next" value="{{ next }}" />
+							</form>
+
+							<p class="mb-0 text-muted">Don’t have an account? <a href="/register/" class="f-w-400">Signup</a></p>
+							<p class="mb-2 text-muted">
+								<br />
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+</body>
+</html>
