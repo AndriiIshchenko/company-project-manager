@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import index
+from .views import ProjectComletedListView
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", ProjectComletedListView.as_view(), name="index"),
 ]
 app_name = "project_manager"
