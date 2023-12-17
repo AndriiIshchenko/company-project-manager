@@ -1,0 +1,126 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<!-- [ accordion-collapse ] start -->
+<div class="col-sm-12">
+  <h4 class="mb-3">Project: <font color="#9900FF">{{ project.name }}</font></h4>
+  <h5 class="mb-3">Project manager: <font color="#9900FF"> {% for worker in project.assigness.all %} {{ worker.username }} {% endfor %} </font> </h5>
+  <hr />
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <a
+            href="#!"
+            data-toggle="collapse"
+            data-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+            >Description</a
+          >
+        </h5>
+      </div>
+      <div
+        id="collapseOne"
+        class="card-body collapse show"
+        aria-labelledby="headingOne"
+        data-parent="#accordionExample"
+      >
+        {{ project.description }}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <a
+            href="#!"
+            class="collapsed"
+            data-toggle="collapse"
+            data-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+            >Tasks</a
+          >
+        </h5>
+      </div>
+      <div
+        id="collapseTwo"
+        class="collapse card-body"
+        aria-labelledby="headingTwo"
+        data-parent="#accordionExample"
+      >
+        <!-- [ basic-table ] start -->
+        <div class="col-md-10">
+          <div>
+            <a href="#!" class="btn btn-primary">Add Task</a>
+            <div class="card-body table-border-style">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Priority</th>
+                      <th>Deadline</th>
+                      <th>Task Type</th>
+                      <th>Number of workers</th>
+                      <th>Is complited</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for task in project.tasks.all%}
+                    <tr>
+                      <td><a href="{% url 'project_manager:task-detail' pk=task.id %} ">{{ task.name }}</a></td>
+                      <td>{{ task.priority }}</td>
+                      <td>{{ task.deadline }}</td>
+                      <td>{{ task.task_type }}</td>
+                      <td>{{ task.assigness.count }}</td>
+                      <td>{{ task.is_complited }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- [ basic-table ] end -->
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <a
+            href="#!"
+            class="collapsed"
+            data-toggle="collapse"
+            data-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+            >Collapsible Group Item #3</a
+          >
+        </h5>
+      </div>
+      <div
+        id="collapseThree"
+        class="card-body collapse"
+        aria-labelledby="headingThree"
+        data-parent="#accordionExample"
+      >
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. 3 wolf moon officia aute, non cupidatat
+        skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+        Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+        helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+        proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+        beer farm-to-table, raw denim aesthetic synth nesciunt you probably
+        haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [ accordion-collapse ] end -->
+<script src="https://appsrv1-147a1.kxcdn.com/gradient/js/vendor-all.min.js"></script>
+<script src="https://appsrv1-147a1.kxcdn.com/gradient/js/plugins/bootstrap.min.js"></script>
+<script src="https://appsrv1-147a1.kxcdn.com/gradient/js/pcoded.min.js"></script>
+{% endblock content %}
+<!-- [ accordion-collapse ] end -->
