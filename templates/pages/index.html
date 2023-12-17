@@ -24,7 +24,7 @@
             {% for project in project_completed_list %}
             <tr>
               <td>{{ project.id }}</td>
-              <td>{{ project.name }}</td>
+              <td><a href="{% url 'project_manager:project-detail' pk=project.id %} ">{{ project.name }}</a></td>
               <td>{{ project.deadline }}</td>
               <td>{% for worker in project.assigness.all %} {{ worker.username }} <br> {% endfor %}</td>
               <td>{{ project.tasks.name }}</td>
@@ -38,7 +38,8 @@
   </div>
 </div>
 
-{% endblock content %} {% block extrajs %}
+{% endblock content %}
+{% block extrajs %}
 <!-- custom-chart js -->
 <script src="{% static 'assets/js/pages/dashboard-main.js' %}"></script>
 <!-- Apex Chart -->
