@@ -1,4 +1,3 @@
-from asyncio import Task
 from typing import Any
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 
-from project_manager.models import Project
+from project_manager.models import Project, Task
 
 # Create your views here.
 # @login_required()
