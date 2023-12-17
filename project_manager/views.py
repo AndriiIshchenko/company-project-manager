@@ -24,4 +24,5 @@ class ProjectActiveListView(LoginRequiredMixin, generic.ListView):
         return queryset
     
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
-    pass
+    model = Project
+    template_name = "pages/project_detail.html"
