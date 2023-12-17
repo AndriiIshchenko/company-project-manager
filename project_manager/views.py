@@ -1,3 +1,4 @@
+from asyncio import Task
 from typing import Any
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,7 +23,13 @@ class ProjectActiveListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self) -> QuerySet[Any]:
         queryset = Project.objects.filter(is_complited=False)
         return queryset
-    
+
+
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
     template_name = "pages/project_detail.html"
+
+
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+    template_name = "pages/task_detail.html"
