@@ -7,9 +7,10 @@ from project_manager.models import Task
 
 
 class TaskForm(forms.ModelForm):
-    drivers = forms.ModelMultipleChoiceField(
+    assigness = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
+        label="Workers"
     )
 
     class Meta:
