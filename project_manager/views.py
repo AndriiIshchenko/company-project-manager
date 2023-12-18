@@ -32,3 +32,8 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     template_name = "pages/task_detail.html"
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super(TaskDetailView, self).get_context_data(**kwargs)
+        context["status"] = 75
+        return context
