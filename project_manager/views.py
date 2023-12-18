@@ -5,6 +5,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
+from project_manager.forms import TaskForm
 
 from project_manager.models import Project, Task
 
@@ -37,3 +38,9 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         context["status"] = 75
         return context
+
+
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    template_name = "pages/task_form.html"
+    form_class = TaskForm
