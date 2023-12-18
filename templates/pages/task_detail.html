@@ -1,7 +1,7 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+{% extends "layouts/base.html" %} {% load static %} {% block content %}
 <div class="col-sm-12">
     <h4 class="mb-3">Task: <font color="#9900FF">{{ task.name }}</font></h4>
-        <a href="#!" class="btn btn-primary">Edit Task</a>
+        <a href="{% url 'project_manager:task-update' pk=task.id %}"  class="btn btn-primary">Edit Task</a>
         
         <div class="card">
             <div class="card-header">
