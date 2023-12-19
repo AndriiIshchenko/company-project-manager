@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from project_manager.models import Task
+from project_manager.models import Project, Task
 
 
 class TaskForm(forms.ModelForm):
@@ -15,4 +15,5 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
+        widgets = {"project": forms.HiddenInput()}
         fields = "__all__"
