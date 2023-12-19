@@ -2,7 +2,7 @@ from typing import Any
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
@@ -58,10 +58,13 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     template_name = "pages/task_form.html"
     form_class = TaskForm
+    def get_success_url(self):
+        return reverse_lazy('project_manager:project-detail', kwargs={'pk': self.object.project_id})
+
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(TaskCreateView, self).get_context_data(**kwargs)# project_id = 
-        a = self.request.POST.get("project_id", "")
-        context["form"] = TaskForm(initial={"project": a })
-        context["project_id"] = a
+        project_id = self.request.POST.get("project_id", "")
+        context["form"] = TaskForm(initial={"project": project_id })
+
         # DriverNameSearchForm(initial={"name": name})
         return context
