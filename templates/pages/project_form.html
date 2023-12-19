@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  
+ 
+  <div class="col-md-6 col-xl-4">
+   
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ object|yesno:"Update,Create" }} Project </h5>
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {{form|crispy}}
+          <input type="submit" value="Sub" name="aaa" class="btn btn-primary">
+        </form>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}
