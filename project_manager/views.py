@@ -30,6 +30,10 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "pages/project_detail.html"
 
 
+class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Project
+
+
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     template_name = "pages/task_detail.html"
@@ -44,3 +48,16 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     template_name = "pages/task_form.html"
     form_class = TaskForm
+
+
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    template_name = "pages/task_form.html"
+    form_class = TaskForm
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super(TaskCreateView, self).get_context_data(**kwargs)# project_id = 
+        a = self.request.POST.get("project_id", "")
+        context["form"] = TaskForm(initial={"project": a })
+        context["project_id"] = a
+        # DriverNameSearchForm(initial={"name": name})
+        return context
