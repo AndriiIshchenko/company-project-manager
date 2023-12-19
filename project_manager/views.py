@@ -4,8 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 from django.views import generic
-from project_manager.forms import TaskForm
+from project_manager.forms import ProjectForm, TaskForm
 
 from project_manager.models import Project, Task
 
@@ -32,6 +33,9 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
+    form_class = ProjectForm
+    template_name = "pages/project_form.html"
+    success_url = reverse_lazy("project_manager:index")
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
