@@ -1,19 +1,11 @@
 from typing import Any
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
-from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
 from project_manager.forms import ProjectForm, TaskForm
 
-from project_manager.models import Project, Task
-
-# Create your views here.
-# @login_required()
-# def index(request):
-#     return render(request, "pages/index.html")
+from project_manager.models import Project, Task, Worker
 
 
 class ProjectActiveListView(LoginRequiredMixin, generic.ListView):
@@ -62,9 +54,12 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
         return reverse_lazy('project_manager:project-detail', kwargs={'pk': self.object.project_id})
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super(TaskCreateView, self).get_context_data(**kwargs)# project_id = 
+        context = super(TaskCreateView, self).get_context_data(**kwargs)
         project_id = self.request.POST.get("project_id", "")
         context["form"] = TaskForm(initial={"project": project_id })
-
-        # DriverNameSearchForm(initial={"name": name})
         return context
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    template_name = "pages/workers_list.html"
