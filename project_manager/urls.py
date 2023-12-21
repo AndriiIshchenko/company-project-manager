@@ -9,7 +9,8 @@ from project_manager.views import (
     TaskUpdateView,
     WorkerListView,
     WorkerCreateView,
-    WorkerDetailView
+    WorkerDetailView,
+    WorkerUpdateView
 )
 
 urlpatterns = [
@@ -22,5 +23,6 @@ urlpatterns = [
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
+    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update")
 ]
 app_name = "project_manager"
