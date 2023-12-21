@@ -25,3 +25,16 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = "__all__"
+
+
+class WorkerCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = Worker
+        fields = UserCreationForm.Meta.fields + (
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "position",
+        )
