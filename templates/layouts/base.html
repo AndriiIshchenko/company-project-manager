@@ -5,10 +5,6 @@
 {% block extrastyle %}{% endblock extrastyle %}
 </head>
 <body>
-    {% block pre_loader %}
-        {% include 'includes/pre-loader.html' %}
-    {% endblock pre_loader %}
-
     {% block sidebar %}
         {% include 'includes/sidebar.html' %}
     {% endblock sidebar %}
@@ -20,11 +16,10 @@
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-content">
-            {% comment %} {% block breadcrumbs %}
-                {% include 'includes/breadcrumbs.html' %}
-            {% endblock breadcrumbs %} {% endcomment %}
-
             {% block content %}{% endblock content %}
+            {% block pagination %}
+                {% include "includes/pagination.html" %}
+            {% endblock %}
         </div>
     </section>
 
