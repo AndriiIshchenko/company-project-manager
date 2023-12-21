@@ -50,7 +50,12 @@
         <!-- [ basic-table ] start -->
         <div class="col-md-10">
           <div>
-            <a href="#!" class="btn btn-primary">Add Task</a>
+            <form action="{% url 'project_manager:task-create' %}" method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="project_id" value={{project.id}}>
+              <input type="submit" value="Add task to this project" class="btn btn-success">
+            </form>
+
             <div class="card-body table-border-style">
               <div class="table-responsive">
                 <table class="table">
