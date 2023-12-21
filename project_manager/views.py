@@ -63,6 +63,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "pages/workers_list.html"
+    paginate_by = 3
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
