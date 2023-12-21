@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
-from project_manager.forms import ProjectForm, TaskForm
+from project_manager.forms import ProjectForm, TaskForm, WorkerCreationForm
 
 from project_manager.models import Project, Task, Worker
 
@@ -63,3 +63,14 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "pages/workers_list.html"
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    template_name = "pages/worker_form.html"
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    template_name = "pages/worker_detail.html"
