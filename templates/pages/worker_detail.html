@@ -1,0 +1,39 @@
+{% extends "layouts/base.html" %} {% load static %} 
+{% block content %}
+{% load project_tags %}
+<div class="col-xl-12 row">
+    <div class="card">
+      <div class="card-header">
+        <h2>{{worker.first_name}} {{worker.last_name}}</h2>
+        <a href="{% url 'project_manager:worker-update' pk=worker.id %}" class="btn  btn-primary">Update user</a>
+        <h5 class="card-title">  Position: {{worker.position}}  </h5>
+        <h5 class="card-title">  Complited tasks: {{ worker|complited_task:True}}  </h5>
+        <h5 class="card-title">  Tasks in progress: {{ worker|complited_task:False}}  </h5>
+      </div>
+      <div class="card-body table-border-style">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Tasks</th>
+                <th>Start Date</th>
+                <th>Deadline</th>
+                <th>Is complited</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for task in worker.tasks.all %}
+              <tr>
+                <td><a href="{% url 'project_manager:worker-detail' pk=worker.id %} ">{{ task.name }}</a></td>
+                <td>{{ task.start_time }}</td>
+                <td>{{ task.deadline }}</td>
+                <td>{{ task.is_complited}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
