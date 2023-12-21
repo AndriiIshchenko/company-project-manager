@@ -15,6 +15,7 @@
               <tr>
                 <th>Username</th>
                 <th>Name</th>
+                <th>Position</th>
                 <th>Email</th>
                 <th>Tasks in progress</th>
                 <th>Finished Tasks</th>
@@ -25,6 +26,7 @@
               <tr>
                 <td><a href="{% url 'project_manager:worker-detail' pk=worker.id %} ">{{ worker.username }}</a></td>
                 <td>{{ worker.first_name }} {{ worker.last_name }}</td>
+                <td>{{ worker.position }}</td>
                 <td>{{ worker.email }}</td>
                 <td>{{ worker|complited_task:False}}</td>
                 <td>{{ worker|complited_task:True}}</td>
