@@ -28,8 +28,8 @@
                 <td>{{ worker.first_name }} {{ worker.last_name }}</td>
                 <td>{{ worker.position }}</td>
                 <td>{{ worker.email }}</td>
-                <td>{{ worker|complited_task:False}}</td>
-                <td>{{ worker|complited_task:True}}</td>
+                <td>{{ worker|completed_task:False}}</td>
+                <td>{{ worker|completed_task:True}}</td>
               </tr>
               {% endfor %}
             </tbody>

@@ -34,7 +34,7 @@ class Project(models.Model):
     description = models.TextField()
     start_time = models.DateField(auto_now_add=True)
     deadline = models.DateField(blank=True)
-    is_complited = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
 
     assigness = models.ManyToManyField(Worker, related_name="projects")
 
@@ -47,7 +47,7 @@ class Task(models.Model):
     description = models.TextField()
     start_time = models.DateField(auto_now_add=True)
     deadline = models.DateField(blank=True)
-    is_complited = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
     TASK_PRIORITY_CHOICE = (
         ("Urgent", "Urgent"),
         ("High", "High"),
