@@ -74,19 +74,19 @@
                         <th>Deadline</th>
                         <th>Task Type</th>
                         <th>Number of workers</th>
-                        <th>Is complited</th>
+                        <th>Is completed</th>
   
                       </tr>
                     </thead>
                     <tbody>
                       {% for worker in task.assigness.all%}
                       <tr>
-                        <td><a href="{% url 'project_manager:task-detail' pk=task.id %} ">{{ worker.username }}</a></td>
+                        <td><a href="{% url 'project_manager:worker-detail' pk=task.id %} ">{{ worker.username }}</a></td>
                         <td>{{ worker.first_name }}</td>
                         <td>{{ task.deadline }}</td>
                         <td>{{ task.task_type }}</td>
                         <td>{{ task.assigness.count }}</td>
-                        <td>{{ task.is_complited }}</td>
+                        <td>{{ task.is_completed }}</td>
                       </tr>
                       {% endfor %}
                     </tbody>

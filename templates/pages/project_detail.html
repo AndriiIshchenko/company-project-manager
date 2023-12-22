@@ -53,7 +53,7 @@
             <form action="{% url 'project_manager:task-create' %}" method="post" novalidate>
               {% csrf_token %}
               <input type="hidden" name="project_id" value={{project.id}}>
-              <input type="submit" value="Add task to this project" class="btn btn-success">
+              <input type="submit" value="Add new task for this project" class="btn btn-success">
             </form>
 
             <div class="card-body table-border-style">
@@ -66,7 +66,7 @@
                       <th>Deadline</th>
                       <th>Task Type</th>
                       <th>Number of workers</th>
-                      <th>Is complited</th>
+                      <th>Is completed</th>
 
                     </tr>
                   </thead>
@@ -78,7 +78,7 @@
                       <td>{{ task.deadline }}</td>
                       <td>{{ task.task_type }}</td>
                       <td>{{ task.assigness.count }}</td>
-                      <td>{{ task.is_complited }}</td>
+                      <td>{{ task.is_completed }}</td>
                     </tr>
                     {% endfor %}
                   </tbody>
