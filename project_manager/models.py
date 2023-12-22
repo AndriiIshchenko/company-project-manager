@@ -22,7 +22,7 @@ class Worker(AbstractUser):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name="workers"
+        related_name="workers",
     )
 
     def __str__(self):
@@ -64,11 +64,7 @@ class Task(models.Model):
     )
     assigness = models.ManyToManyField(Worker, related_name="tasks")
     project = models.ForeignKey(
-            Project,
-            related_name="tasks",
-            on_delete=models.CASCADE,
-            blank=True,
-            null=True
+        Project, related_name="tasks", on_delete=models.CASCADE, blank=True, null=True
     )
 
     def __str__(self):

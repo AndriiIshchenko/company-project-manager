@@ -11,12 +11,16 @@ from project_manager.views import (
     WorkerListView,
     WorkerCreateView,
     WorkerDetailView,
-    WorkerUpdateView
+    WorkerUpdateView,
 )
 
 urlpatterns = [
     path("", ProjectActiveListView.as_view(), name="index"),
-    path("projects/completed/", ProjectCompletedListView.as_view(), name="project-completed"),
+    path(
+        "projects/completed/",
+        ProjectCompletedListView.as_view(),
+        name="project-completed",
+    ),
     path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
     path("projects/create/", ProjectCreateView.as_view(), name="project-create"),
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
@@ -25,6 +29,6 @@ urlpatterns = [
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
-    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update")
+    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
 ]
 app_name = "project_manager"

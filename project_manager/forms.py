@@ -9,7 +9,7 @@ class TaskForm(forms.ModelForm):
     assigness = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        label="Workers"
+        label="Workers",
     )
 
     class Meta:
@@ -20,14 +20,15 @@ class TaskForm(forms.ModelForm):
 
 class ProjectForm(forms.ModelForm):
     assigness = forms.ModelMultipleChoiceField(
-        queryset=Worker.objects.filter(position__name__icontains="project manager"))
+        queryset=Worker.objects.filter(position__name__icontains="project manager")
+    )
+
     class Meta:
         model = Project
         fields = "__all__"
 
 
 class WorkerCreationForm(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (
@@ -44,5 +45,5 @@ class WorkerNameSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by username"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )

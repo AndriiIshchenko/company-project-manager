@@ -39,7 +39,9 @@ class ModelTests(TestCase):
         )
         cls.task2.assigness.add(worker2)
 
-        cls.project1 = Project.objects.create(name="Something interesting", tasks=cls.task1, deadline=date.today())
+        cls.project1 = Project.objects.create(
+            name="Something interesting", tasks=cls.task1, deadline=date.today()
+        )
         cls.project1.assigness.add(worker1)
 
         return super().setUpTestData()
@@ -60,4 +62,6 @@ class ModelTests(TestCase):
         self.assertEqual(str(self.task1), f"{self.task1.name} {self.task1.priority}")
 
     def test_project_model(self):
-        self.assertEqual(str(self.project1), f"{self.project1.name} {self.project1.deadline}")
+        self.assertEqual(
+            str(self.project1), f"{self.project1.name} {self.project1.deadline}"
+        )

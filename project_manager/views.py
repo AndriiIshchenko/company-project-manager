@@ -3,7 +3,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
-from project_manager.forms import ProjectForm, TaskForm, WorkerCreationForm, WorkerNameSearchForm
+from project_manager.forms import (
+    ProjectForm,
+    TaskForm,
+    WorkerCreationForm,
+    WorkerNameSearchForm,
+)
 
 from project_manager.models import Project, Task, Worker
 
@@ -26,6 +31,7 @@ class ProjectCompletedListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self) -> QuerySet[Any]:
         queryset = Project.objects.filter(is_completed=True)
         return queryset
+
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
@@ -55,17 +61,21 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = TaskForm
     success_url = reverse_lazy("project_manager:index")
 
+
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     template_name = "pages/task_form.html"
     form_class = TaskForm
+
     def get_success_url(self):
-        return reverse_lazy('project_manager:project-detail', kwargs={'pk': self.object.project_id})
+        return reverse_lazy(
+            "project_manager:project-detail", kwargs={"pk": self.object.project_id}
+        )
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(TaskCreateView, self).get_context_data(**kwargs)
         project_id = self.request.POST.get("project_id", "")
-        context["form"] = TaskForm(initial={"project": project_id })
+        context["form"] = TaskForm(initial={"project": project_id})
         return context
 
 
@@ -73,6 +83,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "pages/workers_list.html"
     paginate_by = 3
+
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(WorkerListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
@@ -83,8 +94,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         queryset = Worker.objects.all()
         form = WorkerNameSearchForm(self.request.GET)
         if form.is_valid():
-            return queryset.filter(
-                username__icontains=form.cleaned_data["name"])
+            return queryset.filter(username__icontains=form.cleaned_data["name"])
         return queryset
 
 
