@@ -11,12 +11,15 @@
 
     {% block navigation %}
         {% include 'includes/navigation.html' %}
+        
     {% endblock navigation %}
 
     <!-- [ Main Content ] start -->
     <section class="pcoded-main-container">
         <div class="pcoded-content">
-            {% block content %}{% endblock content %}
+            {% if search_form %} {% include "includes/search_form.html" %} {% endif %}
+            {% block content %}
+            {% endblock content %}
             {% block pagination %}
                 {% include "includes/pagination.html" %}
             {% endblock %}

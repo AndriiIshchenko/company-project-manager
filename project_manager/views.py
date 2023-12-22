@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
-from project_manager.forms import ProjectForm, TaskForm, WorkerCreationForm
+from project_manager.forms import ProjectForm, TaskForm, WorkerCreationForm, WorkerNameSearchForm
 
 from project_manager.models import Project, Task, Worker
 
@@ -73,6 +73,19 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "pages/workers_list.html"
     paginate_by = 3
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = WorkerNameSearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self) -> QuerySet[Any]:
+        queryset = Worker.objects.all()
+        form = WorkerNameSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(
+                username__icontains=form.cleaned_data["name"])
+        return queryset
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
