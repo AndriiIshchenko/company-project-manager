@@ -14,8 +14,9 @@ def completed_task(instnce: [Task,Project], status: bool) -> int:
     )
     return amount
 
-@register.filter
+@register.filter   
 def worker_amount(instance: Project) -> int:
+    """Returns amount of assigness of all tasks of project"""
     amount = 0
     tasks = instance.tasks.all()
     for task in tasks:
