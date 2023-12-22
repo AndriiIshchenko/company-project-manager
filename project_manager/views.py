@@ -10,13 +10,22 @@ from project_manager.models import Project, Task, Worker
 
 class ProjectActiveListView(LoginRequiredMixin, generic.ListView):
     model = Project
-    context_object_name = "project_completed_list"
+    context_object_name = "project_active_list"
     template_name = "pages/index.html"
 
     def get_queryset(self) -> QuerySet[Any]:
-        queryset = Project.objects.filter(is_complited=False)
+        queryset = Project.objects.filter(is_completed=False)
         return queryset
+    
 
+class ProjectCompletedListView(LoginRequiredMixin, generic.ListView):
+    model = Project
+    context_object_name = "project_completed_list"
+    template_name = "pages/project_completed.html"
+
+    def get_queryset(self) -> QuerySet[Any]:
+        queryset = Project.objects.filter(is_completed=True)
+        return queryset
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
