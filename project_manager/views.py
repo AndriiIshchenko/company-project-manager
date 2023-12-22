@@ -16,7 +16,7 @@ class ProjectActiveListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self) -> QuerySet[Any]:
         queryset = Project.objects.filter(is_completed=False)
         return queryset
-    
+
 
 class ProjectCompletedListView(LoginRequiredMixin, generic.ListView):
     model = Project
