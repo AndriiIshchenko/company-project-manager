@@ -1,13 +1,11 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
-<!-- [ stiped-table ] start -->
+{% extends 'layouts/base.html' %} {% load static %}
+{% load project_tags %}
+{% block content %}
 <div class="col-xl-12">
   <div class="card">
     <div class="card-header">
-      <h5>Projects in progress</h5>
-      <a href="{% url 'project_manager:project-create'%}"  class="btn btn-primary">Edit Task</a>
-      <span class="d-block m-t-5"
-        >use class <code>table-striped</code> inside table element</span
-      >
+      <h4>Projects in progress</h4>
+      <a href="{% url 'project_manager:project-create'%}"  class="btn btn-primary">Create new project</a>
     </div>
     <div class="card-body table-border-style">
       <div class="table-responsive">
@@ -19,16 +17,17 @@
               <th>Deadline</th>
               <th>Project Manager</th>
               <th>Number of workers</th>
+              <th>Tasks</th>
             </tr>
           </thead>
           <tbody>
-            {% for project in project_completed_list %}
+            {% for project in project_active_list %}
             <tr>
               <td>{{ project.id }}</td>
               <td><a href="{% url 'project_manager:project-detail' pk=project.id %} ">{{ project.name }}</a></td>
               <td>{{ project.deadline }}</td>
               <td>{% for worker in project.assigness.all %} {{ worker.username }} <br> {% endfor %}</td>
-              <td>{{ project.tasks.name }}</td>
+              <td>{{ project|worker_amount }}</td>
               <td>{% for task in project.tasks.all %} {{ task.name }} <br> {% endfor %}</td>
             </tr>
             {% endfor %}
