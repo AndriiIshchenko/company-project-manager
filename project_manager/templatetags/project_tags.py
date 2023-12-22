@@ -6,10 +6,20 @@ register = template.Library()
 
 
 @register.filter
-def complited_task(instnce: [Task,Project], status: bool) -> int:
-    """Returns amount of complited or not Tasks and Projects"""
+def completed_task(instnce: [Task,Project], status: bool) -> int:
+    """Returns amount of completed or not Tasks and Projects"""
     amount = (
-        instnce.tasks.filter(is_complited=status).count()
-        + instnce.projects.filter(is_complited=status).count()
+        instnce.tasks.filter(is_completed=status).count()
+        + instnce.projects.filter(is_completed=status).count()
     )
+    return amount
+
+@register.filter
+def worker_amount(instance: Project) -> int:
+    amount = 0
+    tasks = instance.tasks.all()
+    for task in tasks:
+        amount += task.assigness.count()
+
+    amount += instance.assigness.count()
     return amount
