@@ -19,7 +19,7 @@ class ProjectActiveListView(LoginRequiredMixin, generic.ListView):
     template_name = "pages/index.html"
 
     def get_queryset(self) -> QuerySet[Any]:
-        queryset = Project.objects.filter(is_completed=False)
+        queryset = Project.objects.filter(is_completed=False).prefetch_related("tasks")
         return queryset
 
 
@@ -29,13 +29,14 @@ class ProjectCompletedListView(LoginRequiredMixin, generic.ListView):
     template_name = "pages/project_completed.html"
 
     def get_queryset(self) -> QuerySet[Any]:
-        queryset = Project.objects.filter(is_completed=True)
+        queryset = Project.objects.filter(is_completed=True).prefetch_related("tasks")
         return queryset
 
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
     template_name = "pages/project_detail.html"
+    queryset = Project.objects.all().prefetch_related("tasks")
 
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
@@ -48,7 +49,7 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     template_name = "pages/task_detail.html"
-
+    queryset = Task.objects.all().prefetch_related("assigness")
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         context["status"] = 75
