@@ -52,7 +52,6 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Task.objects.all().prefetch_related("assigness")
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super(TaskDetailView, self).get_context_data(**kwargs)
-        context["status"] = 75
         return context
 
 
