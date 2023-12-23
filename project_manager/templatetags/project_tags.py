@@ -19,7 +19,7 @@ def completed_task(instnce: [Task, Project], status: bool) -> int:
 def worker_amount(instance: Project) -> int:
     """Returns amount of assigness of all tasks of project"""
     amount = 0
-    tasks = instance.tasks.all()
+    tasks = instance.tasks.all().prefetch_related("assigness")
     for task in tasks:
         amount += task.assigness.count()
 
