@@ -46,7 +46,8 @@ A step by step series of examples that tell you how to get a development env run
     git clone the-link-from-forked-repo
     ```
 2. Open the project folder in your IDE
-3. If you are using PyCharm - it may propose you to automatically create venv for your project and install requirements in it, but if not:
+3. Copy settings from .env.example to .env and set values
+4. If you are using PyCharm - it may propose you to automatically create venv for your project and install requirements in it, but if not:
     ```
     python -m venv venv
     venv\Scripts\activate (on Windows)
@@ -54,12 +55,12 @@ A step by step series of examples that tell you how to get a development env run
     pip install -r requirements.txt
     ```
 
-4. Use the following command to load prepared data from fixture to test code:
+5. Use the following command to load prepared data from fixture to test code:
     ```
     python manage.py loaddata db_comp.json
     ```
 
-5. After loading data from fixture you can use following superuser (or create another one by yourself):
+6. After loading data from fixture you can use following superuser (or create another one by yourself):
   - Login: `admin.test`
   - Password: `test4444`
 
