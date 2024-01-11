@@ -1,6 +1,7 @@
 ![Alt text](static/assets/images/project_manag_logo.JPG)
 # Company Project Manager
 
+[company project manager deployed to Render] (https://company-project-manager.onrender.com/)
 Project to manage the company’s employees and tasks.
 
 ## Mission
@@ -61,8 +62,8 @@ A step by step series of examples that tell you how to get a development env run
     ```
 
 6. After loading data from fixture you can use following superuser (or create another one by yourself):
-  - Login: `admin.test`
-  - Password: `test4444`
+  - Login: `james`
+  - Password: `test12345`
 
 ### DB Structure:
 ![Alt text](static/assets/images/diagram.png)
